@@ -2,11 +2,17 @@ package bucket;
 
 import java.util.Objects;
 
+/**
+ * Class <code>Film</code> represents all the data
+ * about movies from project.csv file
+ * */
 public class Film implements Comparable<Film>, ProduceIntiger{
     private final int number;
     private final String name;
     private final double rating;
-
+/**
+ * Constructor to create Film object
+ * */
     public Film(int number, String name, double rating) {
         this.number = number;
         this.name = name;
