@@ -2,20 +2,17 @@ package  bucket;
 
 import java.util.Arrays;
 
+/**
+ * Class <code>Stats</code> represents statistics about array of <code>Film</code> instances and sorting.
+ * */
 public class Stats {
-    private final Film[] arrayOfMovies;
-    private final double average;
-    private final double median;
-    private final long time;
+    /**
+     * Gets the average of values in array of <code>Film</code> objects class.
+     * @param arrayOfMovies array with movies checks statistics.
+     * @return  double  median value, if array is empty returns 0.0
+     * */
 
-    public Stats(Film[] arrayOfMovies, long time) {
-        this.arrayOfMovies = arrayOfMovies;
-        this.average = getAverage();
-        this.median = getMedian();
-        this.time = time;
-    }
-
-    public double getAverage(){
+    public static double getAverage(Film[] arrayOfMovies){
         return Arrays
                 .stream(arrayOfMovies)
                 .mapToDouble(Film::getRating)
@@ -23,7 +20,13 @@ public class Stats {
                 .orElse(Double.NaN);
     }
 
-    public double getMedian(){
+    /**
+     * Gets the median of values in array of <code>Film</code> objects class.
+     * @param arrayOfMovies array with movies checks statistics.
+     * @return  double  median value, if array is empty returns 0.0
+     * */
+
+    public static double getMedian(Film[] arrayOfMovies){
         return arrayOfMovies.length % 2 == 0 ?
                 Arrays
                         .stream(arrayOfMovies)
@@ -31,22 +34,12 @@ public class Stats {
                         .mapToDouble(Film::getRating)
                         .limit(2)
                         .average()
-                        .orElse(0.0) :
+                        .orElse(Double.NaN) :
                 Arrays
                         .stream(arrayOfMovies)
                         .skip(arrayOfMovies.length/2)
                         .mapToDouble(Film::getRating)
                         .findFirst()
-                        .orElse(0.0);
-    }
-
-    @Override
-    public String toString() {
-        return "Stats{" +
-                "capacity=" + arrayOfMovies.length +
-                ", average=" + String.format("%.2f",average)+
-                ", median=" + median +
-                ", time=" + time + "ms"+
-                '}';
+                        .orElse(Double.NaN);
     }
 }
