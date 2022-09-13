@@ -1,4 +1,5 @@
 package bucket;
+
 /**
  * This class is a driver code for application.
  * It uses bucket sorting algorithm from instance of <code>BucketSort</code>
@@ -12,14 +13,15 @@ package bucket;
  * @since 2022-09-07
  * */
 
-
 public class BucketSortTest {
+
     /**
      * This field defines name of file with movies to sort.
      * <bThis path can be changed only if structure of other csv file will be the same (columns).></b>
      * Otherwise, it is high probability that the program may not work correctly.
      * */
     final static String path = "projekt.csv";
+
     /**
      * This main method sorts the arrays of <code>Film</code> instances
      * with different capacities.   It uses <code>bucketSort</code> methods. The path
@@ -32,7 +34,6 @@ public class BucketSortTest {
      * method does task correct.
      * @param args  unused.
      * */
-
     public static void main(String[] args){
         final int[] capacity = {10000, 100000, 500000, 1000000, 1500000};
         System.out.println("Bucket sort movies from projekt.csv");
@@ -57,16 +58,17 @@ public class BucketSortTest {
             }
         }
     }
+
     /**
      * This method represents statistics about time of sorting.
      * @param typeOfSort String information about which sorting method was using.
      * @param time       long value of sorting time.
      * */
-
     public static void showStatsSorting(String typeOfSort, long time){
         System.out.println("method: "+typeOfSort+
                 ", time=" + time + "ms");
     }
+
     /**
      * This method represents statistics about the movies array.
      * @param arr        array of sorted <code>Film</code> instances.

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.TreeSet;
+
 /**
  * This class implements bucket sorting algorithm that operates exclusively of
  * <code>Film</code>arrays.     It consists only static methods. There are 2 types
@@ -13,7 +14,9 @@ import java.util.TreeSet;
  * there are different times of sorting, which are usually seen on bigger capacity of array.
  * Class should be used for movies in csv file (specifically file "projekt.csv" because of its structure).
  * */
+
 public class BucketSort {
+
     /**
      * This method sorts in a bucket style array of <code>Film</code> instances faster.
      * If you are not sure is whole array has Films instances with ratings in integers
@@ -53,7 +56,6 @@ public class BucketSort {
         }
     }
 
-
     /**
      * This method is used to help <code>bucketSort</code> method.
      * It is used to find the minimum and maximum value from all the <code>Film</code>
@@ -72,7 +74,6 @@ public class BucketSort {
         }
         return minMax;
     }
-
 
     /**
      * This method sorts in a bucket style array of <code>Film</code> class instances safer.
@@ -105,6 +106,7 @@ public class BucketSort {
             }
         }
     }
+
     /**
      * This method is used to help <code>bucketSort2</code> method.
      * It provides information about which bucket is assigned to
@@ -112,7 +114,6 @@ public class BucketSort {
      * @param arr                       an array of Film needed to get information about buckets to sort.
      * @return HashMap<Double, Integer> a HashMap with information about buckets.
      * */
-
     private static HashMap<Double, Integer> getMinMaxWithoutLoosing(Film[] arr){
         TreeSet<Double> set = new TreeSet<>();
         for(Film f : arr){

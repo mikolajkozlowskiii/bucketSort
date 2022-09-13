@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Objects;
+
 /**
  * This class initializes the array of <code>Film</code> class instances.
  * This class implements  one <code>downloadMovies</code> method. It is
@@ -12,6 +13,7 @@ import java.util.Objects;
  **/
 
 public class Filter {
+
     /**
      * This method downloads and filters the movies from csv file
      * which row can be cast to <code>Film</code> instances.

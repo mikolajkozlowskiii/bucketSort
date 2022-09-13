@@ -5,6 +5,7 @@ import java.util.Objects;
 /**
  * This class represents all the data about movies.
  * */
+
 public class Film implements Comparable<Film>{
     /**
      * This field is sequenced number of movie in a list (1 column in projekt.csv).
@@ -25,17 +26,16 @@ public class Film implements Comparable<Film>{
  * @param name   a String value of field <code>name</code>.
  * @param rating a double value of field <code>rating</code>.
  * */
-
     public Film(int number, String name, double rating) {
         this.number = number;
         this.name = name;
         this.rating = rating;
     }
+
     /**
      * This method gets a <code>rating</code> field.
      * @return rating of a movie.
      * */
-
     public double getRating() {
         return rating;
     }
