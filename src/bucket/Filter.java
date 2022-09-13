@@ -5,21 +5,25 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Objects;
 /**
- * Class <code>Filter</code> initialize the array of <code>Film</code> class objects.
- * This class implements only <code>downloadMovies</code> method.
+ * This class initializes the array of <code>Film</code> class instances.
+ * This class implements  one <code>downloadMovies</code> method. It is
+ * responsible for downloading and filtering all movies from file.
+ *
  **/
 
 public class Filter {
     /**
-     * This method downloads and filters the movies from csv file which row can be
-     * cast to <code>Film</code> instances.
-     * <b>It is highly recommended to use this class only for
-     * csv files which rows can be cast Film objects class and also the first or other row in this file
-     * has not got any names for columns or the names should be the same like in "projekt.csv"</b>
-     * The BufferedReader object due to readLine() method writes the rows from file in String object variable. This
-     * variable is splitting for the array of Strings which contains all Film instances fields.
-     * This method needs to filter this array, because of some mistakes it would have: array would have the names of
-     * columns this file, the rows would have empty field.
+     * This method downloads and filters the movies from csv file
+     * which row can be cast to <code>Film</code> instances.
+     * <b>It is highly recommended to use this class only for csv files
+     * which rows can be cast on Film class and also no one row in this
+     * file has not got any names for columns or the names should be the
+     * same like in "projekt.csv"</b>. The BufferedReader object due to
+     * readLine() method writes the rows from file in String object variable.
+     * This variable is split for the array of Strings which contains all
+     * Film instances fields.
+     * This method needs to filter array, because of some mistakes it could have:
+     * array could have the names of columns this file, the rows could have empty field.
      * @param path          a String of file path.
      * @param splitter      a String which represents the separating char.
      * @param sizeOfArray   specify the capacity and the number of Film objects array.

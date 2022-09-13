@@ -6,22 +6,26 @@ import java.util.HashMap;
 import java.util.TreeSet;
 /**
  * This class implements bucket sorting algorithm that operates exclusively of
- * Film arrays.     It consists only static methods. There are 2 types of sorting
- * method, which differs in the way the bucket data is received and the accuracy of
- * the bucket data. Due to that some types of Film array will be better to use other
- * method. Because of that there are different times of sorting, which are mainly seen
- * on bigger capacity of array. Class should be used for movies in csv file (specifically
- * file "projekt.csv" because of its structure).
+ * <code>Film</code>arrays.     It consists only static methods. There are 2 types
+ * of sorting methods, which are differs in the way the bucket data is received and the
+ * accuracy of the bucket data. Due to that, depending on Film types instances in array,
+ * it is sometimes better to call one method and sometimes the other. Because of that
+ * there are different times of sorting, which are usually seen on bigger capacity of array.
+ * Class should be used for movies in csv file (specifically file "projekt.csv" because of its structure).
  * */
 public class BucketSort {
     /**
-     * This method sorts in a bucket style array of <code>Film</code> class objects.
-     * Sort algorithm is comparing in Film object <code>rating</code> field, which
-     * can be cast to integer with loosing information after dot, for example 7.0 would be converted to 7. All movies in specified "projekt.csv"
-     * file have ratings in double value, but they are really integers numbers converted to double, so the problem of
-     * bucket sorting (assigning the appropriate bucket) is made easy. This method uses <code>getMinMax</code> method
-     * which provides array of integers with information about buckets.
-     * @param  arr      an array of Film to sort
+     * This method sorts in a bucket style array of <code>Film</code> instances faster.
+     * If you are not sure is whole array has Films instances with ratings in integers
+     * casts to double, better not to use this method. In that case this method may not sort
+     * correctly. Sort algorithm is comparing in Film object <code>rating</code> field, which
+     * can be cast to integer with loosing information after dot, for example 7.0 would
+     * be converted to 7. All movies in specified "projekt.csv" file have ratings in double
+     * value, but they are really integers numbers converted to double, so the problem of
+     * bucket sorting (assigning the appropriate bucket) is made easy. This method uses
+     * <code>getMinMax</code> method which provides array of integers with information about
+     * buckets.
+     * @param  arr      an array of Film to sort.
      * */
     public static void sortWithLossing(Film[] arr) {
         final int[] minMax = getMinMaxWithLoosing(arr);
@@ -40,11 +44,11 @@ public class BucketSort {
             arrayOfList[bucket - min].add(film);
         }
 
-        int x = 0;
+        int index = 0;
         for(int i = 0; i < numOfBuckets; i++){
             for(int j = 0; j < arrayOfList[i].size(); j++){
-                arr[x] = arrayOfList[i].get(j);
-                x++;
+                arr[index] = arrayOfList[i].get(j);
+                index++;
             }
         }
     }
@@ -52,7 +56,8 @@ public class BucketSort {
 
     /**
      * This method is used to help <code>bucketSort</code> method.
-     * It is used to find the minimum and maximum value from all the <code>Film</code> class objects in array.
+     * It is used to find the minimum and maximum value from all the <code>Film</code>
+     * instances in array.
      * @param arr    an array of Film needed to get min and max value.
      * @return int[] an array of int with min and max value of the movies.
      * */
@@ -70,11 +75,14 @@ public class BucketSort {
 
 
     /**
-     * This method sorts in a bucket style array of <code>Film</code> class objects.
-     * It is alternative version of previous <code>bucketSort</code> method. This algorithm is comparing in Film instance
-     * <code>rating</code> field, which can not be cast to integer without loosing important information after dot,
-     * for example 5.2 would be converted to 5. This method uses <code>getMinMax2</code> method which provides HashMap
-     * with whole information about all buckets.
+     * This method sorts in a bucket style array of <code>Film</code> class instances safer.
+     * It is alternative version of previous <code>bucketSort</code> method. If you are sure
+     * is whole array has Films with ratings in integers casts to double, better not to use
+     * this method. This method is much slower than second method in bigger capacities.This
+     * algorithm is comparing in Film instance <code>rating</code> field, which can not
+     * be cast to integer without loosing important information after dot, for example
+     * 5.2 would be converted to 5. This method uses <code>getMinMax2</code> method which
+     * provides HashMap with whole information about all buckets.
      * @param  arr     an array of Film to sort.
      * */
     public static void sortWithoutLoosing(Film[] arr) {
@@ -100,7 +108,7 @@ public class BucketSort {
     /**
      * This method is used to help <code>bucketSort2</code> method.
      * It provides information about which bucket is assigned to
-     * the value of <code>rating</code> field in <code>Film</code> class.
+     * the value of <code>rating</code> field in <code>Film</code> array.
      * @param arr                       an array of Film needed to get information about buckets to sort.
      * @return HashMap<Double, Integer> a HashMap with information about buckets.
      * */

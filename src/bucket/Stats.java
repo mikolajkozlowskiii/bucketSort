@@ -3,12 +3,12 @@ package  bucket;
 import java.util.Arrays;
 
 /**
- * Class <code>Stats</code> represents statistics about array of <code>Film</code> instances and sorting.
+ * This class represents statistics about array of <code>Film</code> instances and sorting.
  * */
 public class Stats {
     /**
-     * Gets the average of values in array of <code>Film</code> objects class.
-     * @param arrayOfMovies array with movies checks statistics.
+     * Gets the average of values in array of <code>Film</code> instances.
+     * @param arrayOfMovies array with movies to checks statistics.
      * @return  double  median value, if array is empty returns 0.0
      * */
 
@@ -21,7 +21,7 @@ public class Stats {
     }
 
     /**
-     * Gets the median of values in array of <code>Film</code> objects class.
+     * Gets the median of values in array of <code>Film</code> instances.
      * @param arrayOfMovies array with movies checks statistics.
      * @return  double  median value, if array is empty returns 0.0
      * */
