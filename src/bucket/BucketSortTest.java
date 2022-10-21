@@ -9,8 +9,8 @@ package bucket;
  * time which program needed to sort.
  *
  * @author Mikolaj Kozlowski
- * @version 1.1
- * @since 2022-09-07
+ * @version 1.2
+ * @since 2022-10-03
  * */
 
 public class BucketSortTest {
@@ -52,7 +52,9 @@ public class BucketSortTest {
                     ex.printStackTrace();
                 }
 
-                if(i==0) showStatsMovies(films);
+                if(i==0) {
+                    showStatsMovies(films);
+                }
                 showStatsSorting(i==0 ? "sortWithLoosing method" : "sortWithoutLoosing method"
                         , stop-start);
             }
@@ -65,8 +67,7 @@ public class BucketSortTest {
      * @param time       long value of sorting time.
      * */
     public static void showStatsSorting(String typeOfSort, long time){
-        System.out.println("method: "+typeOfSort+
-                ", time=" + time + "ms");
+        System.out.println(String.format("method: %s, time=%dms",typeOfSort, time));
     }
 
     /**
@@ -74,10 +75,7 @@ public class BucketSortTest {
      * @param arr        array of sorted <code>Film</code> instances.
      * */
     public static void showStatsMovies(Film[] arr){
-        System.out.println("Stats{" +
-                "capacity=" + arr.length +
-                ", average=" + String.format("%.2f",Stats.getAverage(arr))+
-                ", median=" + Stats.getMedian(arr)+
-                '}');
+        System.out.println(String.format("Stats{capacity=%d, average=%.2f, median=%.1f}"
+                ,arr.length, Stats.getAverage(arr), Stats.getMedian(arr)));
     }
 }

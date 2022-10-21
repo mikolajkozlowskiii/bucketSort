@@ -46,17 +46,7 @@ public class Filter {
                     if (values.length > 2) {
                         if ((!Objects.equals(values[1], "movie")) & (!values[0].isEmpty()) & (!values[1].isEmpty())
                                 & (!values[2].isEmpty()) & (!cautionOfToLittleArray)) {
-                            try {
-                                int column0 = Integer.parseInt(values[0]);
-                                StringBuilder column1 = new StringBuilder();
-                                for(int i = 1; i<values.length-1; i++){
-                                    column1.append(values[i]);
-                                }
-                                double column2 = Double.parseDouble(values[penultimateNumberOfArray]);
-                                arr[numOfElements] = new Film(column0, column1.toString(), column2);
-                            } catch (NumberFormatException ex) {
-                                ex.printStackTrace();
-                            }
+                            convertToFilmArray(arr, numOfElements, values, penultimateNumberOfArray);
                             numOfElements++;
                         }
                     }
@@ -67,5 +57,19 @@ public class Filter {
             }
         }
         return arr;
+    }
+
+    private static void convertToFilmArray(Film[] arr, int numOfElements, String[] values, int penultimateNumberOfArray) {
+        try {
+            int column0 = Integer.parseInt(values[0]);
+            StringBuilder column1 = new StringBuilder();
+            for(int i = 1; i< values.length-1; i++){
+                column1.append(values[i]);
+            }
+            double column2 = Double.parseDouble(values[penultimateNumberOfArray]);
+            arr[numOfElements] = new Film(column0, column1.toString(), column2);
+        } catch (NumberFormatException ex) {
+            ex.printStackTrace();
+        }
     }
 }

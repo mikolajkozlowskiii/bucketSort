@@ -7,7 +7,7 @@ import java.util.TreeSet;
 
 /**
  * This class implements bucket sorting algorithm that operates exclusively of
- * <code>Film</code>arrays.     It consists only static methods. There are 2 types
+ * <code>Film</code>arrays. It consists only static methods. There are 2 types
  * of sorting methods, which are differs in the way the bucket data is received and the
  * accuracy of the bucket data. Due to that, depending on Film types instances in array,
  * it is sometimes better to call one method and sometimes the other. Because of that
@@ -20,7 +20,8 @@ public class BucketSort {
     /**
      * This method sorts in a bucket style array of <code>Film</code> instances faster.
      * If you are not sure is whole array has Films instances with ratings in integers
-     * casts to double, better not to use this method. In that case this method may not sort
+     * casts to double, better not to use this method. In that case this method via the
+     * <code>getMinMaxWithLoosing</code> method throws exception, because this sort may not work
      * correctly. Sort algorithm is comparing in Film object <code>rating</code> field, which
      * can be cast to integer with loosing information after dot, for example 7.0 would
      * be converted to 7. All movies in specified "projekt.csv" file have ratings in double
@@ -60,17 +61,23 @@ public class BucketSort {
      * This method is used to help <code>bucketSort</code> method.
      * It is used to find the minimum and maximum value from all the <code>Film</code>
      * instances in array.
-     * @param arr    an array of Film needed to get min and max value.
-     * @return int[] an array of int with min and max value of the movies.
+     * @param arr                       an array of Film needed to get min and max value.
+     * @return int[]                    an array of int with min and max value of the movies.
+     * @throws IllegalArgumentException if only one element is not integer.
      * */
     private static int[] getMinMaxWithLoosing(Film[] arr) {
         int[] minMax = new int[2];
         Arrays.fill(minMax,0);
         for (Film film : arr) {
-            if (minMax[0] > (int) film.getRating())
-                minMax[0] = (int) film.getRating();
-            else if (minMax[1] < (int) film.getRating())
-                minMax[1] = (int) film.getRating();
+            double currentNumber = film.getRating();
+            if(!(currentNumber%1==0)){
+                throw new IllegalArgumentException("Ratings should be integers!");
+            }
+            int currentNumberCastedToInt = (int)currentNumber;
+            if (minMax[0] > currentNumberCastedToInt)
+                minMax[0] = currentNumberCastedToInt;
+            else if (minMax[1] < currentNumberCastedToInt)
+                minMax[1] = currentNumberCastedToInt;
         }
         return minMax;
     }

@@ -10,7 +10,7 @@ public class Stats {
 
     /**
      * Gets the average of values in array of <code>Film</code> instances.
-     * @param arrayOfMovies array with movies to checks statistics.
+     * @param   arrayOfMovies array with movies to checks statistics.
      * @return  double  median value, if array is empty returns 0.0
      * */
     public static double getAverage(Film[] arrayOfMovies){
@@ -23,7 +23,7 @@ public class Stats {
 
     /**
      * Gets the median of values in array of <code>Film</code> instances.
-     * @param arrayOfMovies array with movies checks statistics.
+     * @param   arrayOfMovies array with movies checks statistics.
      * @return  double  median value, if array is empty returns 0.0
      * */
     public static double getMedian(Film[] arrayOfMovies){

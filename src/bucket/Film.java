@@ -20,22 +20,13 @@ public class Film implements Comparable<Film>{
      * */
     private final double rating;
 
-    /**
- * Constructor to create Film object.
- * @param number a value of field <code>number</code>.
- * @param name   a String value of field <code>name</code>.
- * @param rating a double value of field <code>rating</code>.
- * */
+
     public Film(int number, String name, double rating) {
         this.number = number;
         this.name = name;
         this.rating = rating;
     }
 
-    /**
-     * This method gets a <code>rating</code> field.
-     * @return rating of a movie.
-     * */
     public double getRating() {
         return rating;
     }
