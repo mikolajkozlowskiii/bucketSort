@@ -14,6 +14,12 @@ bucket with the corresponding index of their element of the value by which the s
 * Phase 2: From the buckets starting from the smallest to the largest indexes are added at the end of the
 of the output sequence the elements
 
+***Computational complexity analysis***: Phase one takes
+O(n) - n because the max and min values in the while petla of method one must be determined, and again n because
+all elements must be assigned to buckets. Phase two takes O(n+N) - N because you have to go through
+all buckets in the outer loop and n because you have to go through the entire list in the inner loop, and it will
+will execute as many times as there are elements. This gives us a computational complexity of O(n+N)
+
 ## My implementation
 My implementation was created solely for sorting Film type objects and not to create an API. 
 BucketSort class contains 2 methods for sorting, which should be used depending on the situation - input data.
