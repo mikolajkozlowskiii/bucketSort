@@ -47,5 +47,5 @@ algorithm is comparing in Film instance <code>rating</code> field, which can not
 be cast to integer without loosing important information after dot, for example
 5.2 would be converted to 5. This method uses <code>getMinMax2</code> method which
 provides HashMap with whole information about all buckets.
-## Timing procedure  ##
+## Timing and sorting procedure  ##
 ## Results from the Driver class obtained on my hardware ###
