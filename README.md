@@ -28,22 +28,22 @@ BucketSort class contains 2 methods for sorting, which should be used depending 
 
 
 ### sortWithLoosing() ###
-this method sorts in a bucket style array of Film instances faster than the second one.
+This method sorts in a bucket style array of <code>Film</code> instances faster.
 If you are not sure is whole array has Films instances with ratings in integers
 casts to double, better not to use this method. In that case this method via the
-getMinMaxWithLoosing method throws exception, because this sort may not work
-correctly. Sort algorithm is comparing in Film object rating field, which
+<code>getMinMaxWithLoosing</code> method throws exception, because this sort may not work
+correctly. Sort algorithm is comparing in Film object <code>rating</code> field, which
 can be cast to integer with loosing information after dot, for example 7.0 would
 be converted to 7. All movies in specified "projekt.csv" file have ratings in double
 value, but they are really integers numbers converted to double, so the problem of
 bucket sorting (assigning the appropriate bucket) is made easy. This method uses
-getMinMax method which provides array of integers with information about
-buckets.
+<code>getMinMax</code> method which provides array of integers with information about buckets.
 ### sortWithoutLoosing() ###
 This method sorts in a bucket style array of <code>Film</code> class instances safer.
 It is alternative version of previous <code>bucketSort</code> method. If you are sure
- is whole array has Films with ratings in integers casts to double, better not to use
- this method. This method is much slower than second method in bigger capacities.This
-algorithm is comparing in Film instance rating field, which can not
+is whole array has Films with ratings in integers casts to double, better not to use
+this method. This method is much slower than second method in bigger capacities.This
+algorithm is comparing in Film instance <code>rating</code> field, which can not
 be cast to integer without loosing important information after dot, for example
- 5.2 would be converted to 5. This method uses getMinMax2 method which provides HashMap with whole information about all buckets.
+5.2 would be converted to 5. This method uses <code>getMinMax2</code> method which
+provides HashMap with whole information about all buckets.
