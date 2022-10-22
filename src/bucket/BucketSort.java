@@ -61,7 +61,7 @@ public class BucketSort {
      * This method is used to help <code>bucketSort</code> method.
      * It is used to find the minimum and maximum value from all the <code>Film</code>
      * instances in array.
-     * @param arr                       an array of Film needed to get min and max value.
+     * @param  arr                      an array of Film needed to get min and max value.
      * @return int[]                    an array of int with min and max value of the movies.
      * @throws IllegalArgumentException if only one element is not integer.
      * */
