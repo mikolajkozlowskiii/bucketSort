@@ -21,7 +21,7 @@ BucketSort class contains 2 methods for sorting, which should be used depending 
 ***sortWithoutLoosing()*** this method is better in the opposite case to the one mentioned above, due to the fact that it does not lose information about the values by which it sorts, unlike the first method.
 
 
-###sortWithLoosing()###
+### sortWithLoosing() ###
 this method sorts in a bucket style array of Film instances faster than the second one.
 If you are not sure is whole array has Films instances with ratings in integers
 casts to double, better not to use this method. In that case this method via the
@@ -33,7 +33,7 @@ value, but they are really integers numbers converted to double, so the problem 
 bucket sorting (assigning the appropriate bucket) is made easy. This method uses
 getMinMax method which provides array of integers with information about
 buckets.
-###sortWithoutLoosing()###
+### sortWithoutLoosing() ###
 This method sorts in a bucket style array of <code>Film</code> class instances safer.
 It is alternative version of previous <code>bucketSort</code> method. If you are sure
  is whole array has Films with ratings in integers casts to double, better not to use
