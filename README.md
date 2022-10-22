@@ -5,12 +5,12 @@ The secondary purpose of the project is to retrieve rows from a particular file 
 It is sorting algorithm. In a nutshell, sorting involves supplying to a certain
 container of values corresponding to the index of this container, then you just need to combine these containers according to the
 index numbers. It is based on two phases.
-Markup : *Phase 1: Based on the value of the input structure, create buckets. The index interval starts and ends, respectively, with the index corresponding to the smallest and largest value of the element of the
+* Phase 1: Based on the value of the input structure, create buckets. The index interval starts and ends, respectively, with the index corresponding to the smallest and largest value of the element of the
 of the input structure. In the case of sorting by integers, the matter is simple, just
 give the containers index numbers corresponding to the values from the structure. In other cases
 such as floating point numbers or character strings, it is necessary to cast to integers or adopt a
 a specific rule for assigning indexes. The elements from the input structure are then dropped into a
 bucket with the corresponding index of their element of the value by which the sorting takes place.
-Markup : *Phase 2: From the buckets starting from the smallest to the largest indexes are added at the end of the
+* Phase 2: From the buckets starting from the smallest to the largest indexes are added at the end of the
 of the output sequence the elements
 
