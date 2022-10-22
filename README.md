@@ -14,3 +14,29 @@ bucket with the corresponding index of their element of the value by which the s
 * Phase 2: From the buckets starting from the smallest to the largest indexes are added at the end of the
 of the output sequence the elements
 
+## My implementation
+My implementation was created solely for sorting Film type objects and not to create an API. 
+BucketSort class contains 2 methods for sorting, which should be used depending on the situation - input data.
+***sortWithLoosing()*** this method is better when there is absolute certainty that all instances in the array have values (those by which sorting is performed) that are integers. Otherwise, an exception will be reported.
+***sortWithoutLoosing()*** this method is better in the opposite case to the one mentioned above, due to the fact that it does not lose information about the values by which it sorts, unlike the first method.
+
+
+###sortWithLoosing() this method sorts in a bucket style array of Film instances faster than the second one.
+If you are not sure is whole array has Films instances with ratings in integers
+casts to double, better not to use this method. In that case this method via the
+getMinMaxWithLoosing method throws exception, because this sort may not work
+correctly. Sort algorithm is comparing in Film object rating field, which
+can be cast to integer with loosing information after dot, for example 7.0 would
+be converted to 7. All movies in specified "projekt.csv" file have ratings in double
+value, but they are really integers numbers converted to double, so the problem of
+bucket sorting (assigning the appropriate bucket) is made easy. This method uses
+getMinMax method which provides array of integers with information about
+buckets.
+###sortWithoutLoosing()
+This method sorts in a bucket style array of <code>Film</code> class instances safer.
+It is alternative version of previous <code>bucketSort</code> method. If you are sure
+ is whole array has Films with ratings in integers casts to double, better not to use
+ this method. This method is much slower than second method in bigger capacities.This
+algorithm is comparing in Film instance rating field, which can not
+be cast to integer without loosing important information after dot, for example
+ 5.2 would be converted to 5. This method uses getMinMax2 method which provides HashMap with whole information about all buckets.
