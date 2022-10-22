@@ -1,5 +1,5 @@
 # Goal of project
-The main goal of the project is to create an implementation of a sorting algorithm that will be faster than the sorting provided in the java.util package for the **specific input data** posed in the task. This input data is an array of movies taken from a file located in the main directory. Why was the bucket sort algorithm chosen? Because in this particular case, for this particular file, the values by which the movies will be sorted have a relatively low variance. Therefore, the sorting algorithm will work perfectly here.
+The main goal of the project is to create an implementation of a sorting algorithm that will be faster than the sorting provided in the java.util package for the **specific input data** posed in the task. This input data is an array of movies taken from a file located in the main directory. Why was the bucket sort algorithm chosen? Because in this particular case, for this particular file, the values by which the movies will be sorted have a relatively low variance. Therefore, the sorting algorithm will work perfectly here. In case the films had a larger variancy of values the time of bucket sorting would increase significantly. 
 The secondary purpose of the project is to retrieve rows from a particular file with the extension .csv, to filter the retrieved rows and create instances from them. 
 ## What is bucket sort?
 It is sorting algorithm. In a nutshell, sorting involves supplying to a certain
@@ -47,3 +47,5 @@ algorithm is comparing in Film instance <code>rating</code> field, which can not
 be cast to integer without loosing important information after dot, for example
 5.2 would be converted to 5. This method uses <code>getMinMax2</code> method which
 provides HashMap with whole information about all buckets.
+
+## Results from the Driver class obtained on PC ###
