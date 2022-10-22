@@ -48,4 +48,4 @@ be cast to integer without loosing important information after dot, for example
 5.2 would be converted to 5. This method uses <code>getMinMax2</code> method which
 provides HashMap with whole information about all buckets.
 
-## Results from the Driver class obtained on PC ###
+## Results from the Driver class obtained on my hardware ###
