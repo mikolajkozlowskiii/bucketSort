@@ -3,6 +3,7 @@ package bucket;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.DoubleSupplier;
 
 
 /**
@@ -99,10 +100,11 @@ public class Driver {
      * @param typeOfSort              String that tells which method should execute.
      * */
     private static List<Long> getListOfTimesOfSorting(Film[] films, int accuracyOfSortingTime, String typeOfSort){
-        List<Long> listOfAllTimes = new ArrayList<>();
+        List<Long> listOfAllTimesOfSorintg = new ArrayList<>();
         long start, stop;
         for (int i = 0; i < accuracyOfSortingTime; i++) {
             Film[] filmsToSort = films.clone();
+
             if(typeOfSort.equals(SORT_WITH_LOOSING)){
                 start = System.currentTimeMillis();
                 BucketSort.sortWithLossing(filmsToSort);
@@ -124,9 +126,9 @@ public class Driver {
             } catch (IllegalArgumentException ex) {
                 ex.printStackTrace();
             }
-            listOfAllTimes.add(stop-start);
+            listOfAllTimesOfSorintg.add(stop-start);
         }
-        return listOfAllTimes;
+        return listOfAllTimesOfSorintg;
     }
 
     /**

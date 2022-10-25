@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.TreeSet;
+import java.util.function.DoubleSupplier;
 
 /**
  * This class implements bucket sorting algorithm that operates exclusively of
@@ -31,28 +32,28 @@ public class BucketSort {
      * buckets.
      * @param  arr      an array of Film to sort.
      * */
-    public static void sortWithLossing(Film[] arr) {
+    public static void sortWithLossing(DoubleSupplier[] arr) {
         final int[] minMax = getMinMaxWithLoosing(arr);
         final int min = minMax[0];
         final int max = minMax[1];
         final int numOfBuckets = max-min+1;
 
-        ArrayList<Film>[] arrayOfList = new ArrayList[numOfBuckets];
+        ArrayList<DoubleSupplier>[] arrayOfList = new ArrayList[numOfBuckets];
 
         for(int i = 0; i<numOfBuckets; i++){
             arrayOfList[i] = new ArrayList<>();
         }
 
-        for (Film film : arr) {
-            int bucket = (int) film.getRating();
-            arrayOfList[bucket - min].add(film);
+        for (DoubleSupplier doubleSupplier : arr) {
+            int bucket = (int) doubleSupplier.getAsDouble();
+            arrayOfList[bucket - min].add(doubleSupplier);
         }
 
-        int index = 0;
+        int indexOfSortedArray = 0;
         for(int i = 0; i < numOfBuckets; i++){
             for(int j = 0; j < arrayOfList[i].size(); j++){
-                arr[index] = arrayOfList[i].get(j);
-                index++;
+                arr[indexOfSortedArray] = arrayOfList[i].get(j);
+                indexOfSortedArray++;
             }
         }
     }
@@ -65,11 +66,11 @@ public class BucketSort {
      * @return int[]                    an array of int with min and max value of the movies.
      * @throws IllegalArgumentException if only one element is not integer.
      * */
-    private static int[] getMinMaxWithLoosing(Film[] arr) {
+    private static int[] getMinMaxWithLoosing(DoubleSupplier[] arr) {
         int[] minMax = new int[2];
         Arrays.fill(minMax,0);
-        for (Film film : arr) {
-            double currentNumber = film.getRating();
+        for (DoubleSupplier doubleSupplier : arr) {
+            double currentNumber = doubleSupplier.getAsDouble();
             if(!(currentNumber%1==0)){
                 throw new IllegalArgumentException("Ratings should be integers!");
             }
@@ -93,23 +94,23 @@ public class BucketSort {
      * provides HashMap with whole information about all buckets.
      * @param  arr     an array of Film to sort.
      * */
-    public static void sortWithoutLoosing(Film[] arr) {
+    public static void sortWithoutLoosing(DoubleSupplier[] arr) {
         HashMap<Double,Integer> map = getMinMaxWithoutLoosing(arr);
         final int numOfBuckets = map.size();
-        ArrayList<Film>[] arrayOfList = new ArrayList[numOfBuckets];
+        ArrayList<DoubleSupplier>[] arrayOfList = new ArrayList[numOfBuckets];
         for(int i = 0; i<numOfBuckets; i++){
             arrayOfList[i] = new ArrayList<>();
         }
 
-        for (Film film : arr) {
-            arrayOfList[map.get(film.getRating())].add(film);
+        for (DoubleSupplier doubleSupplier : arr) {
+            arrayOfList[map.get(doubleSupplier.getAsDouble())].add(doubleSupplier);
         }
 
-        int index = 0;
+        int indexOfSortedArray = 0;
         for(int i = 0; i < numOfBuckets; i++){
             for(int j = 0; j < arrayOfList[i].size(); j++){
-                arr[index] = arrayOfList[i].get(j);
-                index++;
+                arr[indexOfSortedArray] = arrayOfList[i].get(j);
+                indexOfSortedArray++;
             }
         }
     }
@@ -121,10 +122,10 @@ public class BucketSort {
      * @param arr                       an array of Film needed to get information about buckets to sort.
      * @return HashMap<Double, Integer> a HashMap with information about buckets.
      * */
-    private static HashMap<Double, Integer> getMinMaxWithoutLoosing(Film[] arr){
+    private static HashMap<Double, Integer> getMinMaxWithoutLoosing(DoubleSupplier[] arr){
         TreeSet<Double> set = new TreeSet<>();
-        for(Film f : arr){
-            set.add(f.getRating());
+        for(DoubleSupplier doubleSupplier : arr){
+            set.add(doubleSupplier.getAsDouble());
         }
         HashMap<Double, Integer> map = new HashMap<>();
         int numOfBucket = 0;

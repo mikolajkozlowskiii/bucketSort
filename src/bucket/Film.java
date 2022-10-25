@@ -1,12 +1,13 @@
 package bucket;
 
 import java.util.Objects;
+import java.util.function.DoubleSupplier;
 
 /**
  * This class represents all the data about movies.
  * */
 
-public class Film implements Comparable<Film>{
+public class Film implements Comparable<Film>, DoubleSupplier {
     /**
      * This field is sequenced number of movie in a list (1 column in projekt.csv).
      * */
@@ -61,5 +62,10 @@ public class Film implements Comparable<Film>{
     @Override
     public int compareTo(Film f) {
         return Double.compare(rating,f.rating);
+    }
+
+    @Override
+    public double getAsDouble() {
+        return getRating();
     }
 }
