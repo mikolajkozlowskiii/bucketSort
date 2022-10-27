@@ -47,12 +47,15 @@ algorithm is comparing in Film instance <code>rating</code> field, which can not
 be cast to integer without loosing important information after dot, for example
 5.2 would be converted to 5. This method uses <code>getMinMax2</code> method which
 provides HashMap with whole information about all buckets.
-###  Usage  ###
+##  Usage  ##
 A comprehensive example of code usage is shown in the Driver class, which also shows the difference in sorting time between the created alogrithms and the sorting from the java.util package. 
 To sort by an array of movies, you first need to choose which sorting method you want to use (for a detailed description of these, see the source file or the sortWithLoosing() and sortWithouLoosing() sections).  Then just call the static method from the BucketSort class as follows:
-`BucketSort.sortWithLoosing(filmsArray)`
+`BucketSort.sortWithLoosing(filmsArray)`,
 `BucketSort.sortWithoutLoosing(filmsArray)`
-### Project status ###
+## Project status ##
 
-### Room for improvment ###
+## Room for improvment ##
+In a new branch, I'm looking for a way to use the class from bucket sorting in a more general way. One idea that has successfully passed the tests is to change the argument in the sort methods of this class, from an array argument of type film to an array argument of type DoubleSupplier. Then any array of objects implementing the DoubleSupplier interface can be sent to these methods, not just arrays of type Film.
+
+
 
