@@ -47,5 +47,12 @@ algorithm is comparing in Film instance <code>rating</code> field, which can not
 be cast to integer without loosing important information after dot, for example
 5.2 would be converted to 5. This method uses <code>getMinMax2</code> method which
 provides HashMap with whole information about all buckets.
-## Timing and sorting procedure  ##
-## Results from the Driver class obtained on my hardware ###
+###  Usage  ###
+A comprehensive example of code usage is shown in the Driver class, which also shows the difference in sorting time between the created alogrithms and the sorting from the java.util package. 
+To sort by an array of movies, you first need to choose which sorting method you want to use (for a detailed description of these, see the source file or the sortWithLoosing() and sortWithouLoosing() sections).  Then just call the static method from the BucketSort class as follows:
+`BucketSort.sortWithLoosing(filmsArray)`
+`BucketSort.sortWithoutLoosing(filmsArray)`
+### Project status ###
+
+### Room for improvment ###
+
