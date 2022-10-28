@@ -1,4 +1,4 @@
-package bucket;
+import bucket.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +31,11 @@ public class Driver {
     final static String SORT_WITH_LOOSING = "BucketSort.sortWithLoosing()";
     final static String SORT_WITHOUT_LOOSING = "BucketSort.sortWithoutLoosing()";
 
+    enum TypeOfSort{
+        SORT_WITH_LOOSING,
+        SORT_WITHOUT_LOOSING,
+        ARRAYS_SORT
+    }
     /**
      * This main method sorts the arrays of <code>Film</code> instances
      * with different capacities. After sorting it is possible It uses methods from
@@ -55,13 +60,13 @@ public class Driver {
         System.out.println("Bucket sort movies from \"projekt.csv\"\n" +
                 "The accuracy");
         for (int j : capacity) {
-            for(int i = 0; i<3; i++){
+            for (int i = 0; i<3; i++){
                 final Film[] films = Filter.downloadMovies(PATH, ",", j);
                 String typeOfSort;
                 List<Long> listOfTimesOfSortings;
                 double averageTimeOfSortings;
 
-                if(i == 0){
+                if (i == 0){
                     typeOfSort = SORT_WITH_LOOSING;
                     listOfTimesOfSortings = getListOfTimesOfSorting(films,
                             accuracyOfSortingTime, typeOfSort);
@@ -80,7 +85,7 @@ public class Driver {
                     averageTimeOfSortings = getAverageTimeOfSorting(listOfTimesOfSortings);
                 }
                 
-                if(i==0) {
+                if (i==0) {
                     showStatsMovies(films);
                 }
                 showStatsSorting(typeOfSort,averageTimeOfSortings);
@@ -94,6 +99,9 @@ public class Driver {
      * BucketSort class or method from java.util.array depending on tested in main method algorithm.
      * Increasing the value of the parameter will increase the accuracy of the actual time needed
      * to perform the sorting but will also increase the time to wait for the results.
+     * to be sure, after each sorting, the Checksort class, by means of its method, checks whether
+     * it is sure that each successive element in the array forms an ascending sequence - that is,
+     * whether the sorting was done correctly
      * @param films                   array of unsorted Film instances.
      * @param accuracyOfSortingTime   a value of how many times the loop performing the sorting is called.
      * @param typeOfSort              String that tells which method should execute.
@@ -103,12 +111,12 @@ public class Driver {
         long start, stop;
         for (int i = 0; i < accuracyOfSortingTime; i++) {
             Film[] filmsToSort = films.clone();
-            if(typeOfSort.equals(SORT_WITH_LOOSING)){
+            if (typeOfSort.equals(SORT_WITH_LOOSING)){
                 start = System.currentTimeMillis();
                 BucketSort.sortWithLossing(filmsToSort);
                 stop = System.currentTimeMillis();
             }
-            else if(typeOfSort.equals(SORT_WITHOUT_LOOSING)){
+            else if (typeOfSort.equals(SORT_WITHOUT_LOOSING)){
                 start = System.currentTimeMillis();
                 BucketSort.sortWithoutLoosing(filmsToSort);
                 stop = System.currentTimeMillis();
@@ -124,6 +132,7 @@ public class Driver {
             } catch (IllegalArgumentException ex) {
                 ex.printStackTrace();
             }
+
             listOfAllTimes.add(stop-start);
         }
         return listOfAllTimes;
