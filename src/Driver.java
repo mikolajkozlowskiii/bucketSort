@@ -1,9 +1,7 @@
 import bucket.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 
 /**
  * This class is a driver code for application.
@@ -20,27 +18,27 @@ import java.util.List;
  * @since 2022-10-28
  * */
 
-
-/**
- *This enum was created only for use in Driver class to make it easier to test
- *different sorting methods.
- * */
-enum TypeOfSort{
-    SORT_WITH_LOOSING("BucketSort.sortWithLoosing()"),
-    SORT_WITHOUT_LOOSING("BucketSort.sortWithoutLoosing()"),
-    ARRAYS_SORT("Arrays.sort()");
-
-    private final String nameOfMethod;
-
-    TypeOfSort(String nameOfMethod) {
-        this.nameOfMethod = nameOfMethod;
-    }
-    @Override
-    public String toString() {
-        return nameOfMethod;
-    }
-}
 public class Driver {
+
+    /**
+     *This enum was created only for use in Driver class to make it easier to test
+     *different sorting methods.
+     * */
+    enum TypeOfSort{
+        SORT_WITH_LOOSING("BucketSort.sortWithLoosing()"),
+        SORT_WITHOUT_LOOSING("BucketSort.sortWithoutLoosing()"),
+        ARRAYS_SORT("Arrays.sort()");
+
+        private final String nameOfMethod;
+
+        TypeOfSort(String nameOfMethod) {
+            this.nameOfMethod = nameOfMethod;
+        }
+        @Override
+        public String toString() {
+            return nameOfMethod;
+        }
+    }
 
     /**
      * This field defines name of file with movies to sort.
