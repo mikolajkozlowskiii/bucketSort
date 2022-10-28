@@ -16,10 +16,30 @@ import java.util.List;
  * average time which program needed to sort.
  *
  * @author Mikolaj Kozlowski
- * @version 1.3
- * @since 2022-10-22
+ * @version 1.4
+ * @since 2022-10-28
  * */
 
+
+/**
+ *This enum was created only for use in Driver class to make it easier to test
+ *different sorting methods.
+ * */
+enum TypeOfSort{
+    SORT_WITH_LOOSING("BucketSort.sortWithLoosing()"),
+    SORT_WITHOUT_LOOSING("BucketSort.sortWithoutLoosing()"),
+    ARRAYS_SORT("Arrays.sort()");
+
+    private final String nameOfMethod;
+
+    TypeOfSort(String nameOfMethod) {
+        this.nameOfMethod = nameOfMethod;
+    }
+    @Override
+    public String toString() {
+        return nameOfMethod;
+    }
+}
 public class Driver {
 
     /**
@@ -28,14 +48,7 @@ public class Driver {
      * Otherwise, it is high probability that the program may not work correctly.
      * */
     final static String PATH = "projekt.csv";
-    final static String SORT_WITH_LOOSING = "BucketSort.sortWithLoosing()";
-    final static String SORT_WITHOUT_LOOSING = "BucketSort.sortWithoutLoosing()";
 
-    enum TypeOfSort{
-        SORT_WITH_LOOSING,
-        SORT_WITHOUT_LOOSING,
-        ARRAYS_SORT
-    }
     /**
      * This main method sorts the arrays of <code>Film</code> instances
      * with different capacities. After sorting it is possible It uses methods from
@@ -57,86 +70,66 @@ public class Driver {
     public static void main(String[] args){
         final int[] capacity = {10000, 100000, 500000, 1000000, 1500000};
         final int accuracyOfSortingTime = 1000;
-        System.out.println("Bucket sort movies from \"projekt.csv\"\n" +
-                "The accuracy");
+        System.out.println("Bucket sort movies from \"projekt.csv\"\n");
         for (int j : capacity) {
-            for (int i = 0; i<3; i++){
+            for (TypeOfSort typeOfSort : TypeOfSort.values()){
                 final Film[] films = Filter.downloadMovies(PATH, ",", j);
-                String typeOfSort;
-                List<Long> listOfTimesOfSortings;
-                double averageTimeOfSortings;
+                Film[] filmsToSort = films.clone();
+                List<Long> listOfTimesOfSortings = new ArrayList<>();
 
-                if (i == 0){
-                    typeOfSort = SORT_WITH_LOOSING;
-                    listOfTimesOfSortings = getListOfTimesOfSorting(films,
-                            accuracyOfSortingTime, typeOfSort);
-                    averageTimeOfSortings = getAverageTimeOfSorting(listOfTimesOfSortings);
+                for(int i=0; i<accuracyOfSortingTime; i++){
+                    filmsToSort = films.clone();
+                    long timeOfSort = doSortAndGetTime(filmsToSort,typeOfSort);
+                    listOfTimesOfSortings.add(timeOfSort);
                 }
-                else if (i == 1){
-                    typeOfSort = SORT_WITHOUT_LOOSING;
-                    listOfTimesOfSortings = getListOfTimesOfSorting(films,
-                            accuracyOfSortingTime, typeOfSort);
-                    averageTimeOfSortings = getAverageTimeOfSorting(listOfTimesOfSortings);
+                double averageTimeOfSortings = getAverageTimeOfSorting(listOfTimesOfSortings);
+
+                if(typeOfSort.equals(TypeOfSort.SORT_WITH_LOOSING)){
+                    showStatsMovies(filmsToSort);
                 }
-                else{
-                    typeOfSort = "Arrays.sort()";
-                    listOfTimesOfSortings = getListOfTimesOfSorting(films,
-                            accuracyOfSortingTime, typeOfSort);
-                    averageTimeOfSortings = getAverageTimeOfSorting(listOfTimesOfSortings);
-                }
-                
-                if (i==0) {
-                    showStatsMovies(films);
-                }
-                showStatsSorting(typeOfSort,averageTimeOfSortings);
+                showStatsSorting(typeOfSort.toString(), averageTimeOfSortings);
             }
-
         }
     }
 
     /**
      * This method is responsible for execute sorting methods. It calls methods from
      * BucketSort class or method from java.util.array depending on tested in main method algorithm.
-     * Increasing the value of the parameter will increase the accuracy of the actual time needed
-     * to perform the sorting but will also increase the time to wait for the results.
-     * to be sure, after each sorting, the Checksort class, by means of its method, checks whether
+     * To be sure, after each sorting, the CheckSort class, by means of its method, checks whether
      * it is sure that each successive element in the array forms an ascending sequence - that is,
      * whether the sorting was done correctly
-     * @param films                   array of unsorted Film instances.
-     * @param accuracyOfSortingTime   a value of how many times the loop performing the sorting is called.
-     * @param typeOfSort              String that tells which method should execute.
+     * @param filmsToSort          array of unsorted Film instances.
+     * @param typeOfSort           String that tells which method should execute.
      * */
-    private static List<Long> getListOfTimesOfSorting(Film[] films, int accuracyOfSortingTime, String typeOfSort){
-        List<Long> listOfAllTimes = new ArrayList<>();
+    private static long doSortAndGetTime(Film[] filmsToSort, TypeOfSort typeOfSort) {
         long start, stop;
-        for (int i = 0; i < accuracyOfSortingTime; i++) {
-            Film[] filmsToSort = films.clone();
-            if (typeOfSort.equals(SORT_WITH_LOOSING)){
+        switch (typeOfSort) {
+            case SORT_WITH_LOOSING -> {
                 start = System.currentTimeMillis();
                 BucketSort.sortWithLossing(filmsToSort);
                 stop = System.currentTimeMillis();
             }
-            else if (typeOfSort.equals(SORT_WITHOUT_LOOSING)){
+            case SORT_WITHOUT_LOOSING -> {
                 start = System.currentTimeMillis();
                 BucketSort.sortWithoutLoosing(filmsToSort);
                 stop = System.currentTimeMillis();
             }
-            else{
+            case ARRAYS_SORT -> {
                 start = System.currentTimeMillis();
                 Arrays.sort(filmsToSort);
                 stop = System.currentTimeMillis();
             }
-
-            try {
-                new CheckSort().checkIsSorted(filmsToSort);
-            } catch (IllegalArgumentException ex) {
-                ex.printStackTrace();
-            }
-
-            listOfAllTimes.add(stop-start);
+            default ->
+                throw new IllegalStateException("Unsupported method for Driver: " + typeOfSort);
         }
-        return listOfAllTimes;
+        try {
+            new CheckSort().checkIsSorted(filmsToSort);
+        } catch (IllegalArgumentException ex) {
+            ex.printStackTrace();
+        }
+        return stop-start;
     }
+
 
     /**
      * This method is used for getting average value from all values in a List.
